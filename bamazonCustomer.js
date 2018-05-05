@@ -45,12 +45,13 @@ function customerPrompt(){
             message: "How much would you like to purchase?"
         },
     ]).then(function(answer){
-        connection.query("SELECT * FROM products WHERE item_id= ?", function(error, response) {
+        connection.query("SELECT * FROM products WHERE ?", {item_id: answer.id}, function(error, response) {
+            console.log(answer.id);
             if (error) {
                 throw error
             }
 
-        answer.id = response[(answer.id - 1)].item_id;
+        answer.id = response[0].item_id;
         for (let i = 0; i < response.length; i++) {
             let updatedAmount = response[i].stock_quantity - answer.quantity;
 
