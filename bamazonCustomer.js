@@ -25,7 +25,7 @@ function start(){
             console.log("======================");
             console.log("Item ID: " + response[i].item_id);
             console.log("Product Name: " + response[i].product_name);
-            console.log("Product Price: $" + repsonse[i].price);
+            console.log("Product Price: $" + response[i].price);
             console.log("======================");
         }
         customerPrompt();
@@ -49,7 +49,7 @@ function customerPrompt(){
                 }
                     return false;
             }
-        }
+        },
     ]).then(function(answer){
         connection.query("SELECT * FROM products", function(error, response) {
             if (error) {
