@@ -51,7 +51,7 @@ function customerPrompt(){
     ]).then(function(answer){
         connection.query("SELECT * FROM products", function(error, response) {
             if (error) throw error;
-        },
+
         answer.id = response[(answer.id - 1)].item_id;
         for (let i = 0; i < res.length; i++) {
             let updatedAmount = response[i].stock_quantity - answer.quantity;
@@ -63,8 +63,10 @@ function customerPrompt(){
                 console.log("Insufficient amount of that item!!!")
             }
 
-
         }
+
+
+        });
     });
 }
 
@@ -82,7 +84,7 @@ function order(id, quantity){
             if(error){
                 throw error;
             }
-            // console.log(response);
+            console.log(response);
             console.log("Thank you for your purchase!");
         }
     );
