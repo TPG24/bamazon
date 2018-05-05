@@ -43,9 +43,9 @@ function customerPrompt(){
             name: "quantity",
             type: "input",
             message: "How much would you like to purchase?"
-        }
+        },
     ]).then(function(answer){
-        connection.query("SELECT * FROM products WHERE ?", answer.id, function(error, response) {
+        connection.query("SELECT * FROM products WHERE item_id= ?", function(error, response) {
             if (error) {
                 throw error
             }
