@@ -18,7 +18,9 @@ connection.connect(function(err) {
 
 function start(){
     connection.query("SELECT * FROM products", function(error, response){
-        if (error) throw error;
+        if (error) {
+            throw error
+        }
         for (let i = 0; i < response.length; i++){
             console.log("======================");
             console.log("Item ID: " + response[i].item_id);
@@ -50,7 +52,9 @@ function customerPrompt(){
         }
     ]).then(function(answer){
         connection.query("SELECT * FROM products", function(error, response) {
-            if (error) throw error;
+            if (error) {
+                throw error
+            }
 
         answer.id = response[(answer.id - 1)].item_id;
         for (let i = 0; i < res.length; i++) {
