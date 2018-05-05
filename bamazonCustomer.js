@@ -42,22 +42,16 @@ function customerPrompt(){
         {
             name: "quantity",
             type: "input",
-            message: "How much would you like to purchase?",
-            validate: function(value) {
-                if (isNaN(value) === false) {
-                    return true;
-                }
-                    return false;
-            }
-        },
+            message: "How much would you like to purchase?"
+        }
     ]).then(function(answer){
-        connection.query("SELECT * FROM products", function(error, response) {
+        connection.query("SELECT * FROM products WHERE ?", answer.id, function(error, response) {
             if (error) {
                 throw error
             }
 
         answer.id = response[(answer.id - 1)].item_id;
-        for (let i = 0; i < res.length; i++) {
+        for (let i = 0; i < response.length; i++) {
             let updatedAmount = response[i].stock_quantity - answer.quantity;
 
             if (answer.quantity <= response[i].stock_quantity) {
